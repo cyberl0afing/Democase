@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- 网页使用的语言 -->
 <html lang="zh-CN">
 <head>
     <!-- 指定字符集 -->
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>修改用户</title>
@@ -17,26 +17,33 @@
 <body>
 <div class="container" style="width: 400px;">
     <h3 style="text-align: center;">修改联系人</h3>
-    <form action="" method="post">
+    <form action="./update" method="post">
+        <div class="form-group">
+            <label for="id">ID：</label>
+            <input type="text" class="form-control" id="id" name="id" placeholder="ID" value="${requestScope.user.id}"
+                   readonly="readonly"/>
+        </div>
         <div class="form-group">
             <label for="name">姓名：</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名"/>
+            <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名"
+                   value="${requestScope.user.name}" readonly="readonly"/>
         </div>
 
         <div class="form-group">
             <label>性别：</label>
-            <input type="radio" name="gender" value="男"/>男
+            <input type="radio" name="gender" value="男" checked="checked"/>男
             <input type="radio" name="gender" value="女"/>女
         </div>
 
         <div class="form-group">
             <label for="age">年龄：</label>
-            <input type="text" class="form-control" id="age" name="age" placeholder="请输入年龄"/>
+            <input type="text" class="form-control" id="age" name="age" placeholder="请输入年龄"
+                   value="${requestScope.user.age}"/>
         </div>
 
         <div class="form-group">
             <label for="address">籍贯：</label>
-            <select name="address" class="form-control">
+            <select name="address" id="address" class="form-control">
                 <option value="广东">广东</option>
                 <option value="广西">广西</option>
                 <option value="湖南">湖南</option>
@@ -45,12 +52,14 @@
 
         <div class="form-group">
             <label for="qq">QQ：</label>
-            <input type="text" class="form-control" name="qq" placeholder="请输入QQ号码"/>
+            <input type="text" class="form-control" id="qq" name="qq" placeholder="请输入QQ号码"
+                   value="${requestScope.user.qq}"/>
         </div>
 
         <div class="form-group">
             <label for="email">Email：</label>
-            <input type="text" class="form-control" name="email" placeholder="请输入邮箱地址"/>
+            <input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱地址"
+                   value="${requestScope.user.email}"/>
         </div>
 
         <div class="form-group" style="text-align: center">

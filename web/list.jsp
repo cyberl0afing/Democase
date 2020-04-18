@@ -73,8 +73,9 @@
                 <td>${user.address}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="./update.jsp">修改</a>&nbsp;<a class="btn btn-default btn-sm"
-                                                                                         href="#">删除</a></td>
+                <td><a class="btn btn-default btn-sm" href="./update?id=${user.id}">修改</a>&nbsp;<a
+                        class="btn btn-default btn-sm"
+                        href="#" onclick="deleteUser(${user.id})">删除</a></td>
             </tr>
         </c:forEach>
 
@@ -110,15 +111,24 @@
 
     </div>
 </div>
-<c:if test="${not empty requestScope.delete_user_ids}">
-    <script>
-        alert("删除${requestScope.delete_user_ids}成功！");
-    </script>
-</c:if>
+<%--删除用户提示--%>
 <script>
     function deleteUser(id) {
-        location.href = "./userdelete?id=" + id;
+        if (confirm("是否确定删除用户？")) {
+            location.href = "./userdelete?id=" + id;
+        }
     }
 </script>
+<c:if test="${not empty requestScope.error_info}">
+    <script>
+        alert(${requestScope.error_info});
+    </script>
+</c:if>
+<c:if test="${not empty requestScope.info}">
+    <script>
+        alert(${requestScope.error_info});
+    </script>
+</c:if>
+
 </body>
 </html>

@@ -18,6 +18,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User findById(String id) {
+        String query = "select * from day17_user where id=?";
+        try {
+            return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<User>(User.class), Integer.parseInt(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    @Override
     public int add(User user) {
         String update = "INSERT INTO test.day17_user (name, age, gender, address, qq, email) VALUES (?, ?, ?, ?, ?, ?)";
         try {
@@ -27,6 +39,20 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    @Override
+    public int update(User user) {
+        String update = "update day17_user set name=?,age=?,gender=?,address=?,qq=?,email=? where id=?";
+        int count = 0;
+        try {
+            count = jdbcTemplate.update(update, user.getName(), user.getAge(), user.getGender(), user.getAddress(), user.getQq(), user.getEmail(), user.getId());
+            return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return count;
+        }
+
     }
 
     @Override
